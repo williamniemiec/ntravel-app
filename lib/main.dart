@@ -1,73 +1,51 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:ntravel/locales/locales.dart';
+import 'package:ntravel/src/config/http_config.dart';
+import 'package:ntravel/src/config/provider_config.dart';
+import 'package:ntravel/src/config/routes_config.dart';
+import 'package:ntravel/src/config/locales_config.dart';
 import 'package:provider/provider.dart';
-import 'src/models/app_data.dart';
-import 'src/pages/home.dart';
-import 'src/pages/search.dart';
-import 'src/pages/continent.dart';
-import 'src/pages/list_city.dart';
-import 'src/pages/city.dart';
-import 'src/pages/favorites.dart';
-import 'src/pages/preload.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-
-// Avoids certificate error
-class MyHttpOverrides extends HttpOverrides{
-  @override
-  HttpClient createHttpClient(SecurityContext? context){
-    return super.createHttpClient(context)
-      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
-  }
-}
 
 void main() {
-  HttpOverrides.global = new MyHttpOverrides();
+  final routesConfig = RoutesConfig();
+  final providerConfig = ProviderConfig();
+  final localesConfig = LocalesConfig(null);
+
+  HttpOverrides.global = HttpConfig();
+
   runApp(
     MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => AppData()
-        )
-      ],
-      child: MyApp(),
+      providers: providerConfig.providers,
+      child: MyApp(
+        routesConfig: routesConfig,
+        localesConfig: localesConfig
+      )
     )
-    );
+  );
 }
 
 class MyApp extends StatelessWidget {
+  
+  final dynamic routesConfig;
+  final dynamic localesConfig;
+
+  const MyApp({
+    required this.routesConfig,
+    required this.localesConfig,
+    Key? key
+  }) : super(key: key);
   
   @override
   Widget build(BuildContext context) {
     
     return MaterialApp(
       title: 'nTravel',
-      supportedLocales: Locales.supportedLanguages,
-      localizationsDelegates: [
-        const LocalesDelegate(),
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate
-      ],
-      localeResolutionCallback: (Locale? locale, Iterable<Locale>? supportedLocales) {
-        for (Locale supportedLocale in supportedLocales!) {
-          if (supportedLocale.languageCode == locale?.languageCode || supportedLocale.countryCode == locale?.countryCode) {
-            return supportedLocale;
-          }
-        }
-
-        return supportedLocales.first;
-      },
-      routes: {
-        '/preload': (context) => PreloadPage(),
-        '/home': (context) => HomePage(),
-        '/search': (context) => SearchPage(),
-        '/continent': (context) => ContinentPage(),
-        '/favorites': (context) => FavoritesPage(),
-        '/list_city': (context) => ListCityPage(),
-        '/city': (context) => CityPage(),
-      },
-      initialRoute: '/preload'
+      supportedLocales: localesConfig.supportedLanguages,
+      localizationsDelegates: localesConfig.localizationsDelegates,
+      localeResolutionCallback: localesConfig.localeResolutionCallback,
+      routes: routesConfig.routes,
+      initialRoute: routesConfig.initialRoute
     );
   }
 }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:ntravel/locales/locales.dart';
+import 'package:ntravel/src/config/locales_config.dart';
 
 Widget CustomDrawer({
   required BuildContext pageContext
 }) {
 
-  var locale = Locales.of(pageContext)!;
+  var locale = LocalesConfig.of(pageContext)!;
 
   return Drawer(
     child: ListView(

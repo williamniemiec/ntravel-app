@@ -5,33 +5,47 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 class LocalesConfig {
 
+  static final LocalesConfig _instance = LocalesConfig._internal();
+  Locale currentLocale = _supportedLanguages.first;
+  late Map<String, String> _sentences;
   static final Iterable<Locale> _supportedLanguages = [
     const Locale('pt', 'BR'),
     const Locale('en', 'US')
   ];
-  
   static final Iterable<LocalizationsDelegate<dynamic>> _localizationsDelegates = [
     const LocalesConfigDelegate(),
     GlobalMaterialLocalizations.delegate,
     GlobalWidgetsLocalizations.delegate
-  ];
+  ]; 
 
-  static Iterable<LocalizationsDelegate<dynamic>> get localizationsDelegates => _localizationsDelegates;
+  factory LocalesConfig(Locale? locale) {
+    if (locale != null) {
+      _instance.currentLocale = locale;
+    }
+    
+    return _instance;
+  }
 
-  static Iterable<Locale> get supportedLanguages => _supportedLanguages;
-
-  LocalesConfig(this.locale);
-
-  final Locale locale;
+  LocalesConfig._internal() {
+    //currentLocale = _supportedLanguages.first;
+  }
 
   static LocalesConfig? of(BuildContext context) {
     return Localizations.of<LocalesConfig>(context, LocalesConfig);
   }
 
-  late Map<String, String> _sentences;
+  Locale localeResolutionCallback(Locale? locale, Iterable<Locale>? supportedLocalesConfig) {
+    for (Locale supportedLocale in supportedLocalesConfig!) {
+      if (supportedLocale.languageCode == locale?.languageCode || supportedLocale.countryCode == locale?.countryCode) {
+        return supportedLocale;
+      }
+    }
+
+    return supportedLocalesConfig.first;
+  }
 
   Future<bool> load() async {
-    String data = await rootBundle.loadString('lib/locales/${this.locale.languageCode}.json');
+    String data = await rootBundle.loadString('lib/locales/${this.currentLocale.languageCode}.json');
 
     Map<String, dynamic> _result = json.decode(data);
 
@@ -47,15 +61,8 @@ class LocalesConfig {
     return this._sentences[key] ?? key;
   }
 
-  static Locale localeResolutionCallback(Locale? locale, Iterable<Locale>? supportedLocalesConfig) {
-    for (Locale supportedLocale in supportedLocalesConfig!) {
-      if (supportedLocale.languageCode == locale?.languageCode || supportedLocale.countryCode == locale?.countryCode) {
-        return supportedLocale;
-      }
-    }
-
-    return supportedLocalesConfig.first;
-  }
+  Iterable<LocalizationsDelegate<dynamic>> get localizationsDelegates => _localizationsDelegates;
+  Iterable<Locale> get supportedLanguages => _supportedLanguages;
 }
 
 class LocalesConfigDelegate extends LocalizationsDelegate<LocalesConfig> {

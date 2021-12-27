@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ntravel/locales/locales.dart';
+import 'package:ntravel/src/config/locales_config.dart';
 import 'package:provider/provider.dart';
 import '../models/app_data.dart';
 import '../components/logo.dart';
@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var locale = Locales.of(context)!;
+    var locale = LocalesConfig.of(context)!;
 
     return Consumer<AppData>(
       builder: (ctx, appdata, child) => Scaffold(
