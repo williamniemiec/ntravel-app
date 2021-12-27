@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "197191163887",
+    "firebase_url": "https://ntravel-bb105-default-rtdb.firebaseio.com",
+    "project_id": "ntravel-bb105",
+    "storage_bucket": "ntravel-bb105.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:197191163887:android:d47c48d85e31a5c15c601a",
+        "android_client_info": {
+          "package_name": "wniemiec.app.ntravel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "197191163887-7aacon2h8vbvrr3r3cjruj2lgf0qiv5f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoao-AoI8gkReXvyOhEQbnvnmHu8Gotmk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "197191163887-7aacon2h8vbvrr3r3cjruj2lgf0qiv5f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

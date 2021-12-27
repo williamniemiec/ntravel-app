@@ -1,0 +1,8 @@
+{
+    "BEGIN": "Begin",
+    "APP_DESCRIPTION": "Travel guide built with Flutter Framework.",
+    "HOME": "Home",
+    "SELECT_CONTINENT": "Select continent",
+    "SEARCH_CITY": "Search city",
+    "FAVORITES": "Favorites"
+}
