@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ntravel/src/domain/city.dart';
 import 'package:ntravel/src/config/locales_config.dart';
 import 'package:ntravel/src/models/app_data.dart';
 import 'package:ntravel/src/components/citybox.dart';
@@ -29,7 +30,7 @@ class FavoritesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<AppData>(
       builder: (ctx, appdata, child) {
-        List favorites = appdata.getFavorites();
+        List<City> favorites = appdata.getFavorites();
 
         return Scaffold(
           key: _scaffoldKey,
@@ -58,13 +59,13 @@ class FavoritesScreen extends StatelessWidget {
     );
   }
 
-  GridView _buildBody(BuildContext screenContext, List<dynamic> favorites) {
+  GridView _buildBody(BuildContext screenContext, List<City> favorites) {
     return GridView.count(
       crossAxisCount: 2,
       children: List.generate(
         favorites.length, 
         (index) => CityBox(
-          data: favorites[index], 
+          city: favorites[index], 
           onTap: () => _handleSeeCity(screenContext, favorites[index])
         )
       )

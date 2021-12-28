@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ntravel/src/domain/city.dart';
 
 
 /// Responsible for representing a city container.
@@ -7,7 +8,7 @@ class CityBox extends StatelessWidget {
   //---------------------------------------------------------------------------
   //		Attributes
   //---------------------------------------------------------------------------
-  final dynamic data;
+  final City city;
   final void Function() onTap;
 
 
@@ -15,7 +16,7 @@ class CityBox extends StatelessWidget {
   //		Constructor
   //---------------------------------------------------------------------------
   const CityBox({Key? key, 
-    required this.data,
+    required this.city,
     required this.onTap
   }) : super(key: key);
 
@@ -62,7 +63,7 @@ class CityBox extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
         child: Image.network(
-          data['places'][0]['img'],
+          city.places[0].img,
           fit: BoxFit.cover,
         )
       )
@@ -104,7 +105,7 @@ class CityBox extends StatelessWidget {
       right: 0,
       bottom: 10,
       child: Text(
-        data['name'],
+        city.name,
         textAlign: TextAlign.center,
         style: textStyle
       )

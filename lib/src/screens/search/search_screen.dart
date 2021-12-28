@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ntravel/src/domain/city.dart';
 import 'package:ntravel/src/config/locales_config.dart';
 import 'package:ntravel/src/models/app_data.dart';
 import 'package:ntravel/src/components/template/custom_app_bar.dart';
@@ -31,7 +32,7 @@ class _SearchScreen extends State<SearchScreen> {
   //		Attributes
   //---------------------------------------------------------------------------
   final GlobalKey<ScaffoldState> _scaffoldKey;
-  List<dynamic> _searchList;
+  List<City> _searchList;
 
 
   //---------------------------------------------------------------------------

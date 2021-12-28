@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ntravel/src/domain/city.dart';
+import 'package:ntravel/src/domain/continent.dart';
+import 'package:ntravel/src/domain/country.dart';
 import 'package:ntravel/src/config/locales_config.dart';
 import 'package:ntravel/src/models/app_data.dart';
 import 'package:ntravel/src/components/citybox.dart';
@@ -31,12 +34,12 @@ class CitiesScreen extends StatelessWidget {
 
     return Consumer<AppData>(
       builder: (ctx, appdata, child) {
-        var continent = appdata.data[continentIndex];
-        List<dynamic> cities = _parseCitiesFromCountry(continent['countries']);
+        Continent continent = appdata.continents[continentIndex];
+        List<City> cities = _parseCitiesFromCountry(continent.countries);
         
         return Scaffold(
           key: _scaffoldKey,
-          appBar: _buildAppBar(context, continent['name'], cities.length),
+          appBar: _buildAppBar(context, continent.name, cities.length),
           backgroundColor: Colors.white,
           drawer: _buildDrawer(context),
           body: _buildBody(context, cities)
@@ -45,11 +48,11 @@ class CitiesScreen extends StatelessWidget {
     );
   }
 
-  List<dynamic> _parseCitiesFromCountry(List countries) {
-    List<dynamic> cities = [];
+  List<City> _parseCitiesFromCountry(List<Country> countries) {
+    List<City> cities = [];
     
-    for (var country in countries) {
-      cities.addAll(country['cities']);
+    for (Country country in countries) {
+      cities.addAll(country.cities);
     }
     
     return cities;
@@ -73,13 +76,13 @@ class CitiesScreen extends StatelessWidget {
     );
   }
 
-  GridView _buildBody(BuildContext screenContext, List<dynamic> cities) {
+  GridView _buildBody(BuildContext screenContext, List<City> cities) {
     return GridView.count(
       crossAxisCount: 3,
       children: List.generate(
         cities.length, 
         (index) => CityBox(
-          data: cities[index], 
+          city: cities[index], 
           onTap: () => _seeCity(screenContext, cities[index])
         )
       )

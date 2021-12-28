@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ntravel/src/config/locales_config.dart';
+import 'package:ntravel/src/domain/city.dart';
 import 'package:ntravel/src/utils/device_utils.dart';
 
 
@@ -10,7 +11,7 @@ class CityInformation extends StatelessWidget {
   //		Attributes
   //---------------------------------------------------------------------------
   final BuildContext screenContext;
-  final dynamic cityData;
+  final City city;
   final bool isFavorited;
   final void Function(String) onFavoriteCity;
 
@@ -21,7 +22,7 @@ class CityInformation extends StatelessWidget {
   const CityInformation({
     Key? key,
     required this.screenContext,
-    required this.cityData,
+    required this.city,
     required this.isFavorited,
     required this.onFavoriteCity
   }) : super(key: key);
@@ -96,7 +97,7 @@ class CityInformation extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 5),
       child: Text(
-        cityData['name'],
+        city.name,
         style: textStyle
       )
     );
@@ -120,7 +121,7 @@ class CityInformation extends StatelessWidget {
         Container(
           margin: const EdgeInsets.only(left: 5),
           child: Text(
-            cityData['review'],
+            city.review.toStringAsFixed(2),
             style: reviewStyle
           )
         )
@@ -136,13 +137,13 @@ class CityInformation extends StatelessWidget {
             isFavorited ? Icons.favorite : Icons.favorite_border, 
             color: Colors.red
           ),
-          onPressed: () => onFavoriteCity(cityData['name']),
+          onPressed: () => onFavoriteCity(city.name),
         )
       );
   }
 
   List<MaterialColor> _generateStarColors() {
-    int reviewScoreRounded = double.parse(cityData['review']).floor();
+    int reviewScoreRounded = city.review.floor();
     
     return [
       (reviewScoreRounded / 1 > 0) ? Colors.blue : Colors.grey, 
@@ -169,7 +170,7 @@ class CityInformation extends StatelessWidget {
         bottom: 10
       ),
       child: Text(
-        cityData['description'],
+        city.description,
         style: textStyle
       )
     );
@@ -207,7 +208,7 @@ class CityInformation extends StatelessWidget {
       crossAxisCount: 2,
       childAspectRatio: 10 / 11,
       children: List.generate(
-        cityData['places'].length, 
+        city.places.length, 
         (index) => _buildAttractionBox(index)
       )
     );
@@ -236,7 +237,7 @@ class CityInformation extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 10),
       child: Text(
-        cityData['places'][cityIndex]['name'],
+        city.places[cityIndex].name,
         style: textStyle
       )
     );
@@ -248,7 +249,7 @@ class CityInformation extends StatelessWidget {
         aspectRatio: 1 / 1,
         child: ClipRRect(
           child: Image.network(
-            cityData['places'][cityIndex]['img'],
+            city.places[cityIndex].img,
             fit: BoxFit.cover
           ),
           borderRadius: BorderRadius.circular(20),

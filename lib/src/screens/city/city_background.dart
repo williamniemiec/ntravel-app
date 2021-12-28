@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ntravel/src/domain/city.dart';
 
 
 /// Responsible for displaying a background image on City screen.
@@ -7,16 +8,17 @@ class CityBackground extends StatelessWidget {
   //---------------------------------------------------------------------------
   //		Attributes
   //---------------------------------------------------------------------------
-  final Map<String, dynamic> cityData;
+  final City city;
 
 
   //---------------------------------------------------------------------------
   //		Constructor
   //---------------------------------------------------------------------------
-  /// Displays a city image using [cityData] as background image on City screen.
+  /// Displays a city image using the image of the first place of the [city] 
+  /// as background image on City screen.
   const CityBackground({
     Key? key,
-    required this.cityData,
+    required this.city,
   }) : super(key: key);
 
 
@@ -30,7 +32,7 @@ class CityBackground extends StatelessWidget {
       left: 0,
       right: 0,
       height: 250,
-      child: _buildImage(cityData['places'][0]['img'])
+      child: _buildImage(city.places[0].img)
     );
   }
 

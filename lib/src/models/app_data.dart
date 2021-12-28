@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ntravel/src/domain/city.dart';
+import 'package:ntravel/src/domain/continent.dart';
+import 'package:ntravel/src/domain/country.dart';
 
 
 /// Responsible for handling storage data.
@@ -7,8 +10,8 @@ class AppData with ChangeNotifier {
   //---------------------------------------------------------------------------
   //		Attributes
   //---------------------------------------------------------------------------
-  List data = [];
-  List favorites = [];
+  List<Continent> _continents = [];
+  List<String> _favorites = [];
 
 
   //---------------------------------------------------------------------------
@@ -16,35 +19,35 @@ class AppData with ChangeNotifier {
   //---------------------------------------------------------------------------
   /// Checks whether a city with name [cityName] has favorited.
   bool isFavorited(String cityName) {
-    return favorites.contains(cityName);
+    return _favorites.contains(cityName);
   }
 
   /// Favorites a city with name [cityName].
   bool favorite(String cityName) {
     if (isFavorited(cityName)) {
-      favorites.remove(cityName);
+      _favorites.remove(cityName);
       
       return false;
     }
     
-    favorites.add(cityName);
+    _favorites.add(cityName);
     
     return true;
   }
 
   /// Searches for cities with name [cityName].
-  List searchCity(String cityName) {
+  List<City> searchCity(String cityName) {
     if (cityName.isEmpty) {
       return [];
     }
 
-    List searchResult = [];
+    List<City> searchResult = [];
     String normalizedCityName = cityName.toLowerCase();
 
-    for (var continents in data) {
-      for (var country in continents['countries']) {
-        for (var city in country['cities']) {
-          if (city['name'].toLowerCase().contains(normalizedCityName)) {
+    for (Continent continent in _continents) {
+      for (Country country in continent.countries) {
+        for (City city in country.cities) {
+          if (city.name.toLowerCase().contains(normalizedCityName)) {
             searchResult.add(city);
           }
         }
@@ -58,11 +61,11 @@ class AppData with ChangeNotifier {
   //---------------------------------------------------------------------------
   //		Getters & Setters
   //---------------------------------------------------------------------------
-  List getFavorites() {
-    List favoritedCities = [];
+  List<City> getFavorites() {
+    List<City> favoritedCities = [];
 
-    for (String favoritedCityName in favorites) {
-      List city = searchCity(favoritedCityName);
+    for (String favoritedCityName in _favorites) {
+      List<City> city = searchCity(favoritedCityName);
 
       if (city.isNotEmpty) {
         favoritedCities.add(city[0]);
@@ -72,8 +75,10 @@ class AppData with ChangeNotifier {
     return favoritedCities;
   }
 
-  void setData(newData) {
-    data = newData;
+  set continents(List<Continent> continents) {
+    _continents = continents;
     notifyListeners();
   }
+
+  List<Continent> get continents => _continents;
 }

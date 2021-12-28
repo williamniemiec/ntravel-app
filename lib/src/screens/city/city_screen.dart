@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ntravel/src/domain/city.dart';
 import 'package:ntravel/src/screens/city/city_background.dart';
 import 'package:ntravel/src/screens/city/city_information.dart';
 import 'package:ntravel/src/screens/city/city_back_button.dart';
@@ -57,15 +58,15 @@ class _CityScreen extends State<CityScreen> {
   }
 
   Stack _buildBody(BuildContext screenContext, AppData appdata) {
-    Map<String, dynamic> cityData = _parseScreenArguments(screenContext);
+    City city = _parseScreenArguments(screenContext);
 
     return Stack(
       children: [
-        CityBackground(cityData: cityData),
+        CityBackground(city: city),
         CityInformation(
           screenContext: screenContext,
-          cityData: cityData,
-          isFavorited: isFavorited || appdata.isFavorited(cityData['name']),
+          city: city,
+          isFavorited: isFavorited || appdata.isFavorited(city.name),
           onFavoriteCity: (cityName) => _handleFavoriteCity(appdata, cityName)
         ),
         CityBackButton(screenContext: screenContext)
@@ -73,11 +74,11 @@ class _CityScreen extends State<CityScreen> {
     );
   }
 
-  Map<String, dynamic> _parseScreenArguments(BuildContext screenContext) {
+  City _parseScreenArguments(BuildContext screenContext) {
     return ModalRoute
       .of(screenContext)!
       .settings
-      .arguments as Map<String, dynamic>;
+      .arguments as City;
   }
 
   void _handleFavoriteCity(appdata, cityName) {

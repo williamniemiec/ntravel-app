@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ntravel/src/components/citybox.dart';
+import 'package:ntravel/src/domain/city.dart';
 
 
 /// Displays cities based on a list.
@@ -8,7 +9,7 @@ class SearchResults extends StatelessWidget {
   //---------------------------------------------------------------------------
   //		Attributes
   //---------------------------------------------------------------------------
-  final List searchList;
+  final List<City> searchList;
   final BuildContext context;
 
 
@@ -33,7 +34,7 @@ class SearchResults extends StatelessWidget {
         children: List.generate(
           searchList.length, 
           (index) => CityBox(
-            data: searchList[index], 
+            city: searchList[index], 
             onTap: () => _handleSelectCity(context, index)
           )
         )

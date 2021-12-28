@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ntravel/src/services/continent_service.dart';
 import 'package:provider/provider.dart';
+import 'package:ntravel/src/domain/continent.dart';
+import 'package:ntravel/src/services/continent_service.dart';
 import 'package:ntravel/src/screens/preload/loading_information.dart';
 import 'package:ntravel/src/screens/preload/try_again.dart';
 import 'package:ntravel/src/models/app_data.dart';
@@ -68,10 +69,10 @@ class _PreloadScreen extends State<PreloadScreen> {
     AppData appdata = Provider.of<AppData>(context, listen: false);
 
     ContinentService continentService = ContinentService();
-    var requestedData = await continentService.getContinents();
+    List<Continent> continents = await continentService.getContinents();
 
-    if (requestedData != null) {
-      appdata.setData(requestedData);
+    if (continents.isNotEmpty) {
+      appdata.continents = continents;
       success = true;
     }
     

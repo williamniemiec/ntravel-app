@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ntravel/src/domain/city.dart';
+import 'package:ntravel/src/domain/country.dart';
 import 'package:ntravel/src/config/locales_config.dart';
 import 'package:ntravel/src/models/app_data.dart';
 import 'package:ntravel/src/components/template/custom_app_bar.dart';
@@ -56,10 +58,10 @@ class ContinentScreen extends StatelessWidget {
 
   ListView _buildBody(AppData appdata, BuildContext screenContext) {
     return ListView.builder(
-      itemCount: appdata.data.length,
+      itemCount: appdata.continents.length,
       itemBuilder: (ctx, continentIndex) {
         String continentName = _parseContinentName(appdata, continentIndex);
-        List<dynamic> cities = _parseContinentCities(appdata, continentIndex);
+        List<City> cities = _parseContinentCities(appdata, continentIndex);
         
         return Column(
           children: [
@@ -73,20 +75,20 @@ class ContinentScreen extends StatelessWidget {
   }
 
   String _parseContinentName(AppData appdata, int continentIndex) {
-    return appdata.data[continentIndex]["name"];
+    return appdata.continents[continentIndex].name;
   }
 
-  List<dynamic> _parseContinentCities(AppData appdata, int continentIndex) {
-    var countries = appdata.data[continentIndex]["countries"];
+  List<City> _parseContinentCities(AppData appdata, int continentIndex) {
+    List<Country> countries = appdata.continents[continentIndex].countries;
     
     return _parseCountryCities(countries);
   }
 
-  List<dynamic> _parseCountryCities(countries) {
-    List<dynamic> cities = [];
+  List<City> _parseCountryCities(List<Country> countries) {
+    List<City> cities = [];
     
-    for (var country in countries) {
-      cities.addAll(country['cities']);
+    for (Country country in countries) {
+      cities.addAll(country.cities);
     }
 
     return cities;
@@ -147,7 +149,7 @@ class ContinentScreen extends StatelessWidget {
   }
 
   Container _buildContinentCities(BuildContext screenContext, 
-                                  List<dynamic> cities) {
+                                  List<City> cities) {
     return Container(
       height: 130,
       margin: const EdgeInsets.only(bottom: 20),
@@ -156,7 +158,7 @@ class ContinentScreen extends StatelessWidget {
         itemCount: cities.length,
         itemBuilder: (cityContext, cityIndex) {
           return CityBox(
-            data: cities[cityIndex],
+            city: cities[cityIndex],
             onTap: () => _handleSeeCity(screenContext, cities[cityIndex])
           );
         }
@@ -164,7 +166,7 @@ class ContinentScreen extends StatelessWidget {
     );
   }
 
-  void _handleSeeCity(BuildContext screenContext, dynamic selectedCityData) {
+  void _handleSeeCity(BuildContext screenContext, City selectedCityData) {
     Navigator.pushNamed(
       screenContext, 
       '/city', 
