@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:ntravel/src/screens/preload/loading_information.dart';
 import 'package:ntravel/src/screens/preload/try_again.dart';
-import 'package:provider/provider.dart';
 import 'package:ntravel/src/models/app_data.dart';
 import 'package:ntravel/src/components/logo.dart';
 

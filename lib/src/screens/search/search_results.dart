@@ -1,5 +1,5 @@
-import 'package:ntravel/src/components/citybox.dart';
 import 'package:flutter/material.dart';
+import 'package:ntravel/src/components/citybox.dart';
 
 
 /// Displays cities based on a list.
