@@ -75,7 +75,7 @@ class CityInformation extends StatelessWidget {
 
   Container _buildHeaderLeft() {
     return Container(
-      margin: EdgeInsets.all(15),
+      margin: const EdgeInsets.all(15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
