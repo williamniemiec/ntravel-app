@@ -1,6 +1,6 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:ntravel/src/app.dart';
 import 'package:ntravel/src/config/http_config.dart';
 import 'package:ntravel/src/config/provider_config.dart';
 import 'package:ntravel/src/config/routes_config.dart';
@@ -17,35 +17,10 @@ void main() {
   runApp(
     MultiProvider(
       providers: providerConfig.providers,
-      child: MyApp(
+      child: App(
         routesConfig: routesConfig,
         localesConfig: localesConfig
       )
     )
   );
-}
-
-class MyApp extends StatelessWidget {
-  
-  final dynamic routesConfig;
-  final dynamic localesConfig;
-
-  const MyApp({
-    required this.routesConfig,
-    required this.localesConfig,
-    Key? key
-  }) : super(key: key);
-  
-  @override
-  Widget build(BuildContext context) {
-    
-    return MaterialApp(
-      title: 'nTravel',
-      supportedLocales: localesConfig.supportedLanguages,
-      localizationsDelegates: localesConfig.localizationsDelegates,
-      localeResolutionCallback: localesConfig.localeResolutionCallback,
-      routes: routesConfig.routes,
-      initialRoute: routesConfig.initialRoute
-    );
-  }
 }

@@ -1,6 +1,5 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:ntravel/src/adapters/api.dart';
+import 'package:ntravel/src/services/continent_service.dart';
 
 class AppData with ChangeNotifier {
   var data;
@@ -44,8 +43,8 @@ class AppData with ChangeNotifier {
   Future<bool> requestData() async {
     bool success = false;
 
-    var api = Api();
-    var requestedData = await api.requestData();
+    var api = ContinentService();
+    var requestedData = await api.getContinents();
 
     if (requestedData != null) {
       setData(requestedData);

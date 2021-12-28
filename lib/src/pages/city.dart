@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/app_data.dart';
 import '../components/logo.dart';
-import '../partials/custom_drawer.dart';
+import '../components/custom_drawer.dart';
 
 class CityPage extends StatefulWidget {
 

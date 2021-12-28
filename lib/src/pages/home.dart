@@ -3,8 +3,8 @@ import 'package:ntravel/src/config/locales_config.dart';
 import 'package:provider/provider.dart';
 import '../models/app_data.dart';
 import '../components/logo.dart';
-import '../partials/custom_app_bar.dart';
-import '../partials/custom_drawer.dart';
+import '../components/custom_app_bar.dart';
+import '../components/custom_drawer.dart';
 
 
 class HomePage extends StatelessWidget {

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/app_data.dart';
 import '../components/logo.dart';
-import '../partials/custom_app_bar.dart';
-import '../partials/custom_drawer.dart';
-import '../partials/citybox.dart';
+import '../components/custom_app_bar.dart';
+import '../components/custom_drawer.dart';
+import '../components/citybox.dart';
 
 class ContinentPage extends StatelessWidget {
 
