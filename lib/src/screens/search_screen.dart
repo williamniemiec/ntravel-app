@@ -6,13 +6,13 @@ import '../components/logo.dart';
 import '../components/custom_app_bar.dart';
 import '../components/custom_drawer.dart';
 
-class SearchPage extends StatefulWidget {
+class SearchScreen extends StatefulWidget {
   
   @override
-  _SearchPage createState() => _SearchPage();
+  _SearchScreen createState() => _SearchScreen();
 }
 
-class _SearchPage extends State<SearchPage> {
+class _SearchScreen extends State<SearchScreen> {
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   // Permite q outros widgets usem scaffold

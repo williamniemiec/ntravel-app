@@ -6,7 +6,7 @@ import '../components/custom_app_bar.dart';
 import '../components/custom_drawer.dart';
 import '../components/citybox.dart';
 
-class ContinentPage extends StatelessWidget {
+class ContinentScreen extends StatelessWidget {
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   // Permite q outros widgets usem scaffold

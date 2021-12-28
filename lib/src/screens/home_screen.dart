@@ -7,7 +7,7 @@ import '../components/custom_app_bar.dart';
 import '../components/custom_drawer.dart';
 
 
-class HomePage extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   // Permite q outros widgets usem scaffold

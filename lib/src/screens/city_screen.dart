@@ -6,13 +6,13 @@ import '../models/app_data.dart';
 import '../components/logo.dart';
 import '../components/custom_drawer.dart';
 
-class CityPage extends StatefulWidget {
+class CityScreen extends StatefulWidget {
 
   @override
-  _CityPage createState() => _CityPage();
+  _CityScreen createState() => _CityScreen();
 }
 
-class _CityPage extends State<CityPage> {
+class _CityScreen extends State<CityScreen> {
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   // Permite q outros widgets usem scaffold

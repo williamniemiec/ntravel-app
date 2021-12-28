@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:ntravel/src/pages/city.dart';
-import 'package:ntravel/src/pages/continent.dart';
-import 'package:ntravel/src/pages/favorites.dart';
-import 'package:ntravel/src/pages/home.dart';
-import 'package:ntravel/src/pages/list_city.dart';
-import 'package:ntravel/src/pages/preload.dart';
-import 'package:ntravel/src/pages/search.dart';
+import 'package:ntravel/src/screens/city_screen.dart';
+import 'package:ntravel/src/screens/continent_screen.dart';
+import 'package:ntravel/src/screens/favorites_screen.dart';
+import 'package:ntravel/src/screens/home_screen.dart';
+import 'package:ntravel/src/screens/cities_screen.dart';
+import 'package:ntravel/src/screens/preload_screen.dart';
+import 'package:ntravel/src/screens/search_screen.dart';
 
 class RoutesConfig {
 
@@ -27,13 +27,13 @@ class RoutesConfig {
 
   void _initializeRoutes() {
     _routes = {
-      '/preload': (context) => PreloadPage(),
-      '/home': (context) => HomePage(),
-      '/search': (context) => SearchPage(),
-      '/continent': (context) => ContinentPage(),
-      '/favorites': (context) => FavoritesPage(),
-      '/list_city': (context) => ListCityPage(),
-      '/city': (context) => CityPage(),
+      '/preload': (context) => PreloadScreen(),
+      '/home': (context) => HomeScreen(),
+      '/search': (context) => SearchScreen(),
+      '/continent': (context) => ContinentScreen(),
+      '/favorites': (context) => FavoritesScreen(),
+      '/list_city': (context) => CitiesScreen(),
+      '/city': (context) => CityScreen(),
     };
   }
 

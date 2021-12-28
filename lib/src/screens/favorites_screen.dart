@@ -6,7 +6,7 @@ import '../components/logo.dart';
 import '../components/custom_app_bar.dart';
 import '../components/custom_drawer.dart';
 
-class ListCityPage extends StatelessWidget {
+class FavoritesScreen extends StatelessWidget {
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   // Permite q outros widgets usem scaffold
@@ -17,44 +17,32 @@ class ListCityPage extends StatelessWidget {
     fontFamily: 'Helvetica Neue'
   );
 
-  seeCity(context, cityData) {
-    Navigator.pushNamed(context, '/city', arguments: cityData);
-    //print(cityData['name']);
-  }
-
   @override
   Widget build(BuildContext context) {
-
-    final continentIndex = ModalRoute.of(context)!.settings.arguments;
-    
-
     return Consumer<AppData>(
       builder: (ctx, appdata, child) {
-        var cities = [];
+        List favorites = appdata.getFavorites();
 
-        for (var country in appdata.data[continentIndex]['countries']) {
-          cities.addAll(country['cities']);
-        }
-        
+        print(favorites);
+
         return Scaffold(
           key: _scaffoldKey,
           appBar: CustomAppBar(
-            title: "${appdata.data[continentIndex]['name']} (${cities.length} cidades)",
+            title: 'Cidades Salvas',
             scaffoldKey: _scaffoldKey,
-            pageContext: context,
-            showBack: true
+            pageContext: context
           ),
           backgroundColor: Colors.white,
           drawer: CustomDrawer(
             pageContext: context
           ),
           body: GridView.count(
-            crossAxisCount: 3,
+            crossAxisCount: 2,
             children: List.generate(
-              cities.length, 
+              favorites.length, 
               (index) => CityBox(
-                data: cities[index], 
-                onTap: (selectedCityData) => seeCity(context, selectedCityData)
+                data: favorites[index], 
+                onTap: (selectedCity) { Navigator.of(context).pushNamed("/city", arguments: selectedCity); }
               )
             )
           )

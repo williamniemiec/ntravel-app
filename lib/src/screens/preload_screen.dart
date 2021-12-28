@@ -4,13 +4,13 @@ import 'package:provider/provider.dart';
 import '../models/app_data.dart';
 import '../components/logo.dart';
 
-class PreloadPage extends StatefulWidget {
+class PreloadScreen extends StatefulWidget {
 
   @override
-  _PreloadPage createState() => _PreloadPage();
+  _PreloadScreen createState() => _PreloadScreen();
 }
 
-class _PreloadPage extends State<PreloadPage> {
+class _PreloadScreen extends State<PreloadScreen> {
 
   bool loading = true;
 
