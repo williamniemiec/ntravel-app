@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+
+/// Responsible for representing application bar.
 PreferredSizeWidget? CustomAppBar({
   required GlobalKey<ScaffoldState> scaffoldKey,
   required BuildContext pageContext,

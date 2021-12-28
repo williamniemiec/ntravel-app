@@ -4,7 +4,7 @@ import 'package:ntravel/src/screens/city/city_background.dart';
 import 'package:ntravel/src/screens/city/city_information.dart';
 import 'package:ntravel/src/screens/city/city_back_button.dart';
 import 'package:ntravel/src/models/app_data.dart';
-import 'package:ntravel/src/components/custom_drawer.dart';
+import 'package:ntravel/src/components/template/custom_drawer.dart';
 
 
 /// Responsible for displaying City screen.

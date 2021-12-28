@@ -1,29 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:ntravel/src/services/continent_service.dart';
 
+
+/// Responsible for handling storage data.
 class AppData with ChangeNotifier {
-  var data;
-  var favorites = [];
 
-  List getFavorites() {
-    List favoritedCities = [];
+  //---------------------------------------------------------------------------
+  //		Attributes
+  //---------------------------------------------------------------------------
+  List data = [];
+  List favorites = [];
 
-    for (String favoritedCityName in favorites) {
-      List city = searchCity(favoritedCityName);
 
-      if (!city.isEmpty) {
-        favoritedCities.add(city[0]);
-      }
-    }
-
-    return favoritedCities;
-  }
-
+  //---------------------------------------------------------------------------
+  //		Methods
+  //---------------------------------------------------------------------------
+  /// Checks whether a city with name [cityName] has favorited.
   bool isFavorited(String cityName) {
     return favorites.contains(cityName);
   }
 
-  bool favorite(cityName) {
+  /// Favorites a city with name [cityName].
+  bool favorite(String cityName) {
     if (isFavorited(cityName)) {
       favorites.remove(cityName);
       
@@ -35,37 +32,19 @@ class AppData with ChangeNotifier {
     return true;
   }
 
-  void setData(newData) {
-    data = newData;
-    notifyListeners();
-  }
-
-  Future<bool> requestData() async {
-    bool success = false;
-
-    var api = ContinentService();
-    var requestedData = await api.getContinents();
-
-    if (requestedData != null) {
-      setData(requestedData);
-      success = true;
-    }
-    
-    return success;
-  }
-
-  List searchCity(String text) {
-    if (text.isEmpty) {
+  /// Searches for cities with name [cityName].
+  List searchCity(String cityName) {
+    if (cityName.isEmpty) {
       return [];
     }
 
     List searchResult = [];
-    String normalizedText = text.toLowerCase();
+    String normalizedCityName = cityName.toLowerCase();
 
     for (var continents in data) {
       for (var country in continents['countries']) {
         for (var city in country['cities']) {
-          if (city['name'].toLowerCase().contains(normalizedText)) {
+          if (city['name'].toLowerCase().contains(normalizedCityName)) {
             searchResult.add(city);
           }
         }
@@ -73,5 +52,28 @@ class AppData with ChangeNotifier {
     }
 
     return searchResult;
+  }
+
+
+  //---------------------------------------------------------------------------
+  //		Getters & Setters
+  //---------------------------------------------------------------------------
+  List getFavorites() {
+    List favoritedCities = [];
+
+    for (String favoritedCityName in favorites) {
+      List city = searchCity(favoritedCityName);
+
+      if (city.isNotEmpty) {
+        favoritedCities.add(city[0]);
+      }
+    }
+
+    return favoritedCities;
+  }
+
+  void setData(newData) {
+    data = newData;
+    notifyListeners();
   }
 }

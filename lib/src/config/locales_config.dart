@@ -3,21 +3,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+
+/// Responsible for configuring application languages.
 class LocalesConfig {
 
+  //---------------------------------------------------------------------------
+  //		Attributes
+  //---------------------------------------------------------------------------
   static final LocalesConfig _instance = LocalesConfig._internal();
-  Locale currentLocale = _supportedLanguages.first;
+  static final Iterable<Locale> _supportedLanguages = _getSupportedLanguages();
+  static final Iterable<LocalizationsDelegate<dynamic>> _delegates = _getDelegates();
+  late Locale currentLocale;
   late Map<String, String> _sentences;
-  static final Iterable<Locale> _supportedLanguages = [
-    const Locale('pt', 'BR'),
-    const Locale('en', 'US')
-  ];
-  static final Iterable<LocalizationsDelegate<dynamic>> _localizationsDelegates = [
-    const LocalesConfigDelegate(),
-    GlobalMaterialLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate
-  ]; 
 
+
+  //---------------------------------------------------------------------------
+  //		Constructor
+  //---------------------------------------------------------------------------
+  LocalesConfig._internal() {
+    currentLocale = _supportedLanguages.first;
+  }
+
+
+  //---------------------------------------------------------------------------
+  //		Factory
+  //---------------------------------------------------------------------------
   factory LocalesConfig(Locale? locale) {
     if (locale != null) {
       _instance.currentLocale = locale;
@@ -26,17 +36,33 @@ class LocalesConfig {
     return _instance;
   }
 
-  LocalesConfig._internal() {
-    //currentLocale = _supportedLanguages.first;
+
+  //---------------------------------------------------------------------------
+  //		Methods
+  //---------------------------------------------------------------------------
+   static Iterable<Locale>  _getSupportedLanguages() {
+    return [
+      const Locale('pt', 'BR'),
+      const Locale('en', 'US')
+    ];
+  }
+
+  static Iterable<LocalizationsDelegate<dynamic>> _getDelegates() {
+    return [
+      const LocalesConfigDelegate(),
+      GlobalMaterialLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate
+    ]; 
   }
 
   static LocalesConfig? of(BuildContext context) {
     return Localizations.of<LocalesConfig>(context, LocalesConfig);
   }
 
-  Locale localeResolutionCallback(Locale? locale, Iterable<Locale>? supportedLocalesConfig) {
+  Locale localeResolutionCallback(Locale? locale, 
+                                  Iterable<Locale>? supportedLocalesConfig) {
     for (Locale supportedLocale in supportedLocalesConfig!) {
-      if (supportedLocale.languageCode == locale?.languageCode || supportedLocale.countryCode == locale?.countryCode) {
+      if (isSupported(supportedLocale, locale)) {
         return supportedLocale;
       }
     }
@@ -44,39 +70,78 @@ class LocalesConfig {
     return supportedLocalesConfig.first;
   }
 
+  bool isSupported(Locale supportedLocale, Locale? locale) {
+    return  (supportedLocale.languageCode == locale?.languageCode) 
+            || (supportedLocale.countryCode == locale?.countryCode);
+  }
+
   Future<bool> load() async {
-    String data = await rootBundle.loadString('lib/locales/${this.currentLocale.languageCode}.json');
+    Map<String, dynamic> storedDictionary = await _loadDictionary();
 
-    Map<String, dynamic> _result = json.decode(data);
-
-    this._sentences = new Map();
-    _result.forEach((String key, dynamic value) {
-      this._sentences[key] = value.toString();
-    });
+    _parseDictionary(storedDictionary);
 
     return true;
   }
 
-  String translate(String key) {
-    return this._sentences[key] ?? key;
+  Future<Map<String, dynamic>> _loadDictionary() async {
+    String storedDictionary = await rootBundle.loadString(
+      'lib/locales/${currentLocale.languageCode}.json'
+    );
+    
+    return json.decode(storedDictionary);
   }
 
-  Iterable<LocalizationsDelegate<dynamic>> get localizationsDelegates => _localizationsDelegates;
+  void _parseDictionary(Map<String, dynamic> storedDictionary) {
+    _sentences = {};
+    
+    storedDictionary.forEach((String key, dynamic value) {
+      _sentences[key] = value.toString();
+    });
+  }
+
+  String translate(String key) {
+    return _sentences[key] ?? key;
+  }
+
+
+  //---------------------------------------------------------------------------
+  //		Getters
+  //---------------------------------------------------------------------------
+  Iterable<LocalizationsDelegate<dynamic>> get delegates {
+    return _delegates;
+  }
+
   Iterable<Locale> get supportedLanguages => _supportedLanguages;
 }
 
+
 class LocalesConfigDelegate extends LocalizationsDelegate<LocalesConfig> {
+
+  //---------------------------------------------------------------------------
+  //		Constructor
+  //---------------------------------------------------------------------------
   const LocalesConfigDelegate();
 
+
+  //---------------------------------------------------------------------------
+  //		Methods
+  //---------------------------------------------------------------------------
   @override
-  bool isSupported(Locale locale) => ['pt', 'en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) {
+    return getSupportedLanguages().contains(locale.languageCode);
+  }
+
+  List<String> getSupportedLanguages() {
+    return [
+      'pt', 'en'
+    ];
+  }
 
   @override
   Future<LocalesConfig> load(Locale locale) async {
-    LocalesConfig localizations = new LocalesConfig(locale);
+    LocalesConfig localizations = LocalesConfig(locale);
+    
     await localizations.load();
-
-    print("Load ${locale.languageCode}");
 
     return localizations;
   }

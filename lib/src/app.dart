@@ -32,7 +32,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'nTravel',
       supportedLocales: localesConfig.supportedLanguages,
-      localizationsDelegates: localesConfig.localizationsDelegates,
+      localizationsDelegates: localesConfig.delegates,
       localeResolutionCallback: localesConfig.localeResolutionCallback,
       routes: routesConfig.routes,
       initialRoute: routesConfig.initialRoute

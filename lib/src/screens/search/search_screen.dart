@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ntravel/src/config/locales_config.dart';
 import 'package:ntravel/src/models/app_data.dart';
-import 'package:ntravel/src/components/custom_app_bar.dart';
-import 'package:ntravel/src/components/custom_drawer.dart';
+import 'package:ntravel/src/components/template/custom_app_bar.dart';
+import 'package:ntravel/src/components/template/custom_drawer.dart';
 import 'package:ntravel/src/screens/search/search_input.dart';
 import 'package:ntravel/src/screens/search/search_results.dart';
 

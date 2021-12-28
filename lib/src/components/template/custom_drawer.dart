@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:ntravel/src/config/locales_config.dart';
 
+
+/// Responsible for representing application drawer.
 Widget CustomDrawer({
   required BuildContext pageContext
 }) {
 
+  //---------------------------------------------------------------------------
+  //		Methods
+  //---------------------------------------------------------------------------
   var locale = LocalesConfig.of(pageContext)!;
 
   return Drawer(

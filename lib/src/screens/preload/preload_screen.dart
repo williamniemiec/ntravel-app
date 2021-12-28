@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ntravel/src/services/continent_service.dart';
 import 'package:provider/provider.dart';
 import 'package:ntravel/src/screens/preload/loading_information.dart';
 import 'package:ntravel/src/screens/preload/try_again.dart';
 import 'package:ntravel/src/models/app_data.dart';
-import 'package:ntravel/src/components/logo.dart';
+import 'package:ntravel/src/components/template/logo.dart';
 
 
 /// Responsible for loading application data used by other screens.
@@ -63,10 +64,18 @@ class _PreloadScreen extends State<PreloadScreen> {
   }
 
   Future<bool> _requestData() async {
+    bool success = false;
     AppData appdata = Provider.of<AppData>(context, listen: false);
-    bool successOnRequestData = await appdata.requestData();
+
+    ContinentService continentService = ContinentService();
+    var requestedData = await continentService.getContinents();
+
+    if (requestedData != null) {
+      appdata.setData(requestedData);
+      success = true;
+    }
     
-    return successOnRequestData;
+    return success;
   }
 
   void _successfulRequest() {

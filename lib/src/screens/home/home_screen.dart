@@ -3,9 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:ntravel/src/config/locales_config.dart';
 import 'package:ntravel/src/screens/home/home_text.dart';
 import 'package:ntravel/src/models/app_data.dart';
-import 'package:ntravel/src/components/logo.dart';
-import 'package:ntravel/src/components/custom_app_bar.dart';
-import 'package:ntravel/src/components/custom_drawer.dart';
+import 'package:ntravel/src/components/template/logo.dart';
+import 'package:ntravel/src/components/template/custom_app_bar.dart';
+import 'package:ntravel/src/components/template/custom_drawer.dart';
 
 
 /// Responsible for displaying Home screen.

@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
 
+
+/// Responsible for representing a city container.
 class CityBox extends StatelessWidget {
 
+  //---------------------------------------------------------------------------
+  //		Attributes
+  //---------------------------------------------------------------------------
   final data;
   final void Function() onTap;
 
+
+  //---------------------------------------------------------------------------
+  //		Constructor
+  //---------------------------------------------------------------------------
   CityBox({
     required this.data,
     required this.onTap
   });
 
+
+  //---------------------------------------------------------------------------
+  //		Methods
+  //---------------------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
     return Container(
