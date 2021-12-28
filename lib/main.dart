@@ -7,6 +7,7 @@ import 'package:ntravel/src/config/routes_config.dart';
 import 'package:ntravel/src/config/locales_config.dart';
 import 'package:provider/provider.dart';
 
+
 void main() {
   final routesConfig = RoutesConfig();
   final providerConfig = ProviderConfig();
