@@ -6,5 +6,7 @@
     "SEARCH_CITY": "Buscar cidade",
     "FAVORITES": "Favoritos",
     "SEARCH_A_CITY": "Busque uma cidade",
-    "ENTER_A_CITY_NAME": "Digite o nome de uma cidade"
+    "ENTER_A_CITY_NAME": "Digite o nome de uma cidade",
+    "LOADING_INFORMATION": "Carregando informações...",
+    "TRY_AGAIN": "Tentar novamente"
 }
