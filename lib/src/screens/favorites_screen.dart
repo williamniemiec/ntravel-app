@@ -1,52 +1,77 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ntravel/src/config/locales_config.dart';
 import 'package:ntravel/src/models/app_data.dart';
 import 'package:ntravel/src/components/citybox.dart';
 import 'package:ntravel/src/components/custom_app_bar.dart';
 import 'package:ntravel/src/components/custom_drawer.dart';
 
+
+/// Responsible for displaying Favorites screen.
 class FavoritesScreen extends StatelessWidget {
 
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
-  // Permite q outros widgets usem scaffold
+  //---------------------------------------------------------------------------
+  //		Attributes
+  //---------------------------------------------------------------------------
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
-  TextStyle textStyle = TextStyle(
-    fontSize: 15,
-    fontWeight: FontWeight.bold,
-    fontFamily: 'Helvetica Neue'
-  );
 
+  //---------------------------------------------------------------------------
+  //		Constructor
+  //---------------------------------------------------------------------------
+  FavoritesScreen({Key? key}) : super(key: key);
+
+
+  //---------------------------------------------------------------------------
+  //		Methods
+  //---------------------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
     return Consumer<AppData>(
       builder: (ctx, appdata, child) {
         List favorites = appdata.getFavorites();
 
-        print(favorites);
-
         return Scaffold(
           key: _scaffoldKey,
-          appBar: CustomAppBar(
-            title: 'Cidades Salvas',
-            scaffoldKey: _scaffoldKey,
-            pageContext: context
-          ),
+          appBar: _buildAppBar(context),
           backgroundColor: Colors.white,
-          drawer: CustomDrawer(
-            pageContext: context
-          ),
-          body: GridView.count(
-            crossAxisCount: 2,
-            children: List.generate(
-              favorites.length, 
-              (index) => CityBox(
-                data: favorites[index], 
-                onTap: () { Navigator.of(context).pushNamed("/city", arguments: favorites[index]); }
-              )
-            )
-          )
+          drawer: _buildDrawer(context),
+          body: _buildBody(context, favorites)
         );
       }
     );
+  }
+
+  PreferredSizeWidget? _buildAppBar(BuildContext screenContext) {
+    LocalesConfig locale = LocalesConfig.of(screenContext)!;
+
+    return CustomAppBar(
+      title: locale.translate("FAVORITED_CITIES"),
+      scaffoldKey: _scaffoldKey,
+      pageContext: screenContext
+    );
+  }
+
+  Widget _buildDrawer(BuildContext screenContext) {
+    return CustomDrawer(
+      pageContext: screenContext
+    );
+  }
+
+  GridView _buildBody(BuildContext screenContext, List<dynamic> favorites) {
+    return GridView.count(
+      crossAxisCount: 2,
+      children: List.generate(
+        favorites.length, 
+        (index) => CityBox(
+          data: favorites[index], 
+          onTap: () => _handleSeeCity(screenContext, favorites[index])
+        )
+      )
+    );
+  }
+
+  void _handleSeeCity(BuildContext screenContext, dynamic cityData) {
+    Navigator.of(screenContext).pushNamed("/city", arguments: cityData); 
   }
 }

@@ -50,31 +50,34 @@ class _CityScreen extends State<CityScreen> {
     );
   }
 
-  Widget _buildDrawer(BuildContext context) {
+  Widget _buildDrawer(BuildContext screenContext) {
     return CustomDrawer(
-      pageContext: context
+      pageContext: screenContext
     );
   }
 
-  Stack _buildBody(BuildContext context, AppData appdata) {
-    Map<String, dynamic> cityData = _parseScreenArguments(context);
+  Stack _buildBody(BuildContext screenContext, AppData appdata) {
+    Map<String, dynamic> cityData = _parseScreenArguments(screenContext);
 
     return Stack(
       children: [
         CityBackground(cityData: cityData),
         CityInformation(
-          screenContext: context,
+          screenContext: screenContext,
           cityData: cityData,
           isFavorited: isFavorited || appdata.isFavorited(cityData['name']),
           onFavoriteCity: (cityName) => _handleFavoriteCity(appdata, cityName)
         ),
-        CityBackButton(screenContext: context)
+        CityBackButton(screenContext: screenContext)
       ]
     );
   }
 
-  Map<String, dynamic> _parseScreenArguments(BuildContext context) {
-    return ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+  Map<String, dynamic> _parseScreenArguments(BuildContext screenContext) {
+    return ModalRoute
+      .of(screenContext)!
+      .settings
+      .arguments as Map<String, dynamic>;
   }
 
   void _handleFavoriteCity(appdata, cityName) {

@@ -12,5 +12,8 @@
     "WELCOME_TO": "Bem vindo(a) ao",
     "PERFECT_TRAVEL_GUIDE": "Seu guia de viagem perfeito",
     "CITIES": "Cidades",
-    "MAIN_ATTRACTIONS": "Principais pontos turísticos"
+    "MAIN_ATTRACTIONS": "Principais pontos turísticos",
+    "SELECT_A_CONTINENT": "Escolha um continente",
+    "SEE_CITIES": "Ver cidades",
+    "FAVORITED_CITIES": "Cidades favoritadas"
 }

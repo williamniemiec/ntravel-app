@@ -55,38 +55,38 @@ class CitiesScreen extends StatelessWidget {
     return cities;
   }
 
-  PreferredSizeWidget? _buildAppBar(BuildContext context, String continentName, 
-                                    int totalCities) {
-    LocalesConfig locale = LocalesConfig.of(context)!;
+  PreferredSizeWidget? _buildAppBar(BuildContext screenContext, 
+                                    String continentName, int totalCities) {
+    LocalesConfig locale = LocalesConfig.of(screenContext)!;
 
     return CustomAppBar(
       title: "$continentName ($totalCities ${locale.translate('CITIES')})",
       scaffoldKey: _scaffoldKey,
-      pageContext: context,
+      pageContext: screenContext,
       showBack: true
     );
   }
 
-  Widget _buildDrawer(BuildContext context) {
+  Widget _buildDrawer(BuildContext screenContext) {
     return CustomDrawer(
-      pageContext: context
+      pageContext: screenContext
     );
   }
 
-  GridView _buildBody(BuildContext context, List<dynamic> cities) {
+  GridView _buildBody(BuildContext screenContext, List<dynamic> cities) {
     return GridView.count(
       crossAxisCount: 3,
       children: List.generate(
         cities.length, 
         (index) => CityBox(
           data: cities[index], 
-          onTap: () => _seeCity(context, cities[index])
+          onTap: () => _seeCity(screenContext, cities[index])
         )
       )
     );
   }
 
-  _seeCity(context, cityData) {
-    Navigator.pushNamed(context, '/city', arguments: cityData);
+  void _seeCity(BuildContext screenContext, dynamic cityData) {
+    Navigator.pushNamed(screenContext, '/city', arguments: cityData);
   }
 }

@@ -42,8 +42,8 @@ class SearchResults extends StatelessWidget {
   }
 
   /// Redirects to city page based on [selectedCity].
-  void _handleSelectCity(BuildContext context, int selectedCity) {
-    Navigator.of(context).pushNamed(
+  void _handleSelectCity(BuildContext screenContext, int selectedCity) {
+    Navigator.of(screenContext).pushNamed(
       '/city', 
       arguments: searchList[selectedCity]
     );

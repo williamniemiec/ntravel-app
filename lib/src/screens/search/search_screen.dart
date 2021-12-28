@@ -58,40 +58,40 @@ class _SearchScreen extends State<SearchScreen> {
     );
   }
 
-  PreferredSizeWidget? _buildAppBar(BuildContext context) {
-    var locale = LocalesConfig.of(context)!;
+  PreferredSizeWidget? _buildAppBar(BuildContext screenContext) {
+    LocalesConfig locale = LocalesConfig.of(screenContext)!;
 
     return CustomAppBar(
       title: locale.translate("SEARCH_A_CITY"),
       scaffoldKey: _scaffoldKey,
-      pageContext: context,
+      pageContext: screenContext,
       hideSearch: true
     );
   }
 
-  Widget _buildDrawer(BuildContext context) {
+  Widget _buildDrawer(BuildContext screenContext) {
     return CustomDrawer(
-      pageContext: context
+      pageContext: screenContext
     );
   }
 
-  Column _buildBody(BuildContext context) {
+  Column _buildBody(BuildContext screenContext) {
     return Column(
       children: [
         SearchInput(
-          onChanged: (text) => _searchCity(context, text)
+          onChanged: (text) => _searchCity(screenContext, text)
         ),
         SearchResults(
           searchList: _searchList, 
-          context: context
+          context: screenContext
         )
       ]
     );
   }
 
   /// Searches for cities with a name using [cityName].
-  void _searchCity(pageContext, cityName) async {
-    AppData appdata = await Provider.of<AppData>(pageContext, listen: false);
+  void _searchCity(BuildContext screenContext, String cityName) async {
+    AppData appdata = Provider.of<AppData>(screenContext, listen: false);
 
     setState(() {
       _searchList = appdata.searchCity(cityName);

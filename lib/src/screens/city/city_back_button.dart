@@ -29,15 +29,15 @@ class CityBackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 50,
-      margin: EdgeInsets.only(top: DeviceUtils.getStatusBarHeight(context)),
-      child: _buildBackButton(context)
+      margin: EdgeInsets.only(top: DeviceUtils.getStatusBarHeight(screenContext)),
+      child: _buildBackButton()
     );
   }
 
-  IconButton _buildBackButton(BuildContext context) {
+  IconButton _buildBackButton() {
     return IconButton(
       icon: _buildBackIcon(),
-      onPressed: () => _redirectToPreviousPage(context),
+      onPressed: () => _redirectToPreviousPage(),
     );
   }
 
@@ -48,7 +48,7 @@ class CityBackButton extends StatelessWidget {
     );
   }
 
-  void _redirectToPreviousPage(BuildContext context) {
-    Navigator.of(context).pop(); 
+  void _redirectToPreviousPage() {
+    Navigator.of(screenContext).pop(); 
   }
 }

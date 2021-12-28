@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
     return Consumer<AppData>(
       builder: (ctx, appdata, child) => Scaffold(
         key: _scaffoldKey,
-        appBar: _buildAppBar(locale, context),
+        appBar: _buildAppBar(context, locale),
         backgroundColor: Colors.white,
         drawer: _buildDrawer(context),
         body: _buildBody(locale)
@@ -41,17 +41,18 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  PreferredSizeWidget? _buildAppBar(LocalesConfig locale, BuildContext context) {
+  PreferredSizeWidget? _buildAppBar(BuildContext screenContext, 
+                                    LocalesConfig locale) {
     return CustomAppBar(
       title: locale.translate("BEGIN"),
       scaffoldKey: _scaffoldKey,
-      pageContext: context
+      pageContext: screenContext
     );
   }
 
-  Widget _buildDrawer(BuildContext context) {
+  Widget _buildDrawer(BuildContext screenContext) {
     return CustomDrawer(
-      pageContext: context
+      pageContext: screenContext
     );
   }
 

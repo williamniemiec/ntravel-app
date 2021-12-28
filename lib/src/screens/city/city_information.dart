@@ -18,7 +18,7 @@ class CityInformation extends StatelessWidget {
   //---------------------------------------------------------------------------
   //		Constructor
   //---------------------------------------------------------------------------
-  CityInformation({
+  const CityInformation({
     Key? key,
     required this.screenContext,
     required this.cityData,

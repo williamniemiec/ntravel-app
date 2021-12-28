@@ -102,7 +102,7 @@ class _PreloadScreen extends State<PreloadScreen> {
 
   StatelessWidget _buildStatus() {
     if (loading) {
-      return LoadingInformation();
+      return const LoadingInformation();
     }
 
     return TryAgain(reload: _loadData);
