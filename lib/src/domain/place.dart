@@ -1,8 +1,16 @@
+/// Responsible for representing a place from a city.
 class Place {
   
-  String img;
-  String name;
+  //---------------------------------------------------------------------------
+  //		Attributes
+  //---------------------------------------------------------------------------
+  final String img;
+  final String name;
 
+
+  //---------------------------------------------------------------------------
+  //		Constructors
+  //---------------------------------------------------------------------------
   Place({
     required this.img,
     required this.name
