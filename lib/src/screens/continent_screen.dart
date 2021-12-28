@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../models/app_data.dart';
-import '../components/logo.dart';
-import '../components/custom_app_bar.dart';
-import '../components/custom_drawer.dart';
-import '../components/citybox.dart';
+import 'package:ntravel/src/models/app_data.dart';
+import 'package:ntravel/src/components/custom_app_bar.dart';
+import 'package:ntravel/src/components/custom_drawer.dart';
+import 'package:ntravel/src/components/citybox.dart';
 
 class ContinentScreen extends StatelessWidget {
 
@@ -93,7 +92,7 @@ class ContinentScreen extends StatelessWidget {
                     itemBuilder: (cityContext, cityIndex) {
                       return CityBox(
                         data: cities[cityIndex],
-                        onTap: (selectedCityData) => seeCity(context, selectedCityData)
+                        onTap: () => seeCity(context, cities[cityIndex])
                       );
                     }
                   ),

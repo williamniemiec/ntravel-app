@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CityBox extends StatelessWidget {
 
   final data;
-  final Function onTap;
+  final void Function() onTap;
 
   CityBox({
     required this.data,
@@ -15,7 +15,7 @@ class CityBox extends StatelessWidget {
     return Container(
       margin: EdgeInsets.all(10),
       child: GestureDetector(
-        onTap: () => onTap(data),
+        onTap: onTap,
         child: Stack(
           children: [
             AspectRatio(

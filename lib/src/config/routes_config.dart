@@ -5,7 +5,7 @@ import 'package:ntravel/src/screens/favorites_screen.dart';
 import 'package:ntravel/src/screens/home_screen.dart';
 import 'package:ntravel/src/screens/cities_screen.dart';
 import 'package:ntravel/src/screens/preload_screen.dart';
-import 'package:ntravel/src/screens/search_screen.dart';
+import 'package:ntravel/src/screens/search/search_screen.dart';
 
 class RoutesConfig {
 

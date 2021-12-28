@@ -1,10 +1,9 @@
 import 'package:ntravel/src/components/citybox.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../models/app_data.dart';
-import '../components/logo.dart';
-import '../components/custom_app_bar.dart';
-import '../components/custom_drawer.dart';
+import 'package:ntravel/src/models/app_data.dart';
+import 'package:ntravel/src/components/custom_app_bar.dart';
+import 'package:ntravel/src/components/custom_drawer.dart';
 
 class CitiesScreen extends StatelessWidget {
 
@@ -54,7 +53,7 @@ class CitiesScreen extends StatelessWidget {
               cities.length, 
               (index) => CityBox(
                 data: cities[index], 
-                onTap: (selectedCityData) => seeCity(context, selectedCityData)
+                onTap: () => seeCity(context, cities[index])
               )
             )
           )

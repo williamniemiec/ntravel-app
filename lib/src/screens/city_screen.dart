@@ -1,10 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../models/app_data.dart';
-import '../components/logo.dart';
-import '../components/custom_drawer.dart';
+import 'package:ntravel/src/models/app_data.dart';
+import 'package:ntravel/src/components/custom_drawer.dart';
 
 class CityScreen extends StatefulWidget {
 

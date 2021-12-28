@@ -4,5 +4,7 @@
     "HOME": "Home",
     "SELECT_CONTINENT": "Select continent",
     "SEARCH_CITY": "Search city",
-    "FAVORITES": "Favorites"
+    "FAVORITES": "Favorites",
+    "SEARCH_A_CITY": "Search a city",
+    "ENTER_A_CITY_NAME": "Enter a city name"
 }
