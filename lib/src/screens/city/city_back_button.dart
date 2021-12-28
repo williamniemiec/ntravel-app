@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ntravel/src/utils/device_utils.dart';
 
 
 /// Responsible for displaying a back button on City screen.
@@ -28,13 +29,9 @@ class CityBackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 50,
-      margin: EdgeInsets.only(top: _getStatusBarHeight()),
+      margin: EdgeInsets.only(top: DeviceUtils.getStatusBarHeight(context)),
       child: _buildBackButton(context)
     );
-  }
-
-  double _getStatusBarHeight() {
-    return MediaQuery.of(screenContext).padding.top;
   }
 
   IconButton _buildBackButton(BuildContext context) {
