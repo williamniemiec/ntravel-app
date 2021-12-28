@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ntravel/src/screens/city_screen.dart';
 import 'package:ntravel/src/screens/continent_screen.dart';
 import 'package:ntravel/src/screens/favorites_screen.dart';
-import 'package:ntravel/src/screens/home_screen.dart';
+import 'package:ntravel/src/screens/home/home_screen.dart';
 import 'package:ntravel/src/screens/cities_screen.dart';
 import 'package:ntravel/src/screens/preload/preload_screen.dart';
 import 'package:ntravel/src/screens/search/search_screen.dart';
