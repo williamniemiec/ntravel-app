@@ -62,14 +62,14 @@ class CitiesScreen extends StatelessWidget {
     return CustomAppBar(
       title: "$continentName ($totalCities ${locale.translate('CITIES')})",
       scaffoldKey: _scaffoldKey,
-      pageContext: screenContext,
+      screenContext: screenContext,
       showBack: true
     );
   }
 
   Widget _buildDrawer(BuildContext screenContext) {
     return CustomDrawer(
-      pageContext: screenContext
+      screenContext: screenContext
     );
   }
 

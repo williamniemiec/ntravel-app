@@ -46,13 +46,13 @@ class HomeScreen extends StatelessWidget {
     return CustomAppBar(
       title: locale.translate("BEGIN"),
       scaffoldKey: _scaffoldKey,
-      pageContext: screenContext
+      screenContext: screenContext
     );
   }
 
   Widget _buildDrawer(BuildContext screenContext) {
     return CustomDrawer(
-      pageContext: screenContext
+      screenContext: screenContext
     );
   }
 

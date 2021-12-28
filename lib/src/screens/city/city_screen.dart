@@ -52,7 +52,7 @@ class _CityScreen extends State<CityScreen> {
 
   Widget _buildDrawer(BuildContext screenContext) {
     return CustomDrawer(
-      pageContext: screenContext
+      screenContext: screenContext
     );
   }
 

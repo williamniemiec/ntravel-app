@@ -48,13 +48,13 @@ class FavoritesScreen extends StatelessWidget {
     return CustomAppBar(
       title: locale.translate("FAVORITED_CITIES"),
       scaffoldKey: _scaffoldKey,
-      pageContext: screenContext
+      screenContext: screenContext
     );
   }
 
   Widget _buildDrawer(BuildContext screenContext) {
     return CustomDrawer(
-      pageContext: screenContext
+      screenContext: screenContext
     );
   }
 

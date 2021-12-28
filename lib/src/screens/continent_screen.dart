@@ -44,13 +44,13 @@ class ContinentScreen extends StatelessWidget {
     return CustomAppBar(
       title: locale.translate("SELECT_A_CONTINENT"),
       scaffoldKey: _scaffoldKey,
-      pageContext: screenContext
+      screenContext: screenContext
     );
   }
 
   Widget _buildDrawer(BuildContext screenContext) {
     return CustomDrawer(
-      pageContext: screenContext
+      screenContext: screenContext
     );
   }
 

@@ -64,14 +64,14 @@ class _SearchScreen extends State<SearchScreen> {
     return CustomAppBar(
       title: locale.translate("SEARCH_A_CITY"),
       scaffoldKey: _scaffoldKey,
-      pageContext: screenContext,
+      screenContext: screenContext,
       hideSearch: true
     );
   }
 
   Widget _buildDrawer(BuildContext screenContext) {
     return CustomDrawer(
-      pageContext: screenContext
+      screenContext: screenContext
     );
   }
 
