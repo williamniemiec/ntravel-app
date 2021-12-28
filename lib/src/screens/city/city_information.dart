@@ -146,11 +146,11 @@ class CityInformation extends StatelessWidget {
     int reviewScoreRounded = city.review.floor();
     
     return [
-      (reviewScoreRounded / 1 > 0) ? Colors.blue : Colors.grey, 
-      (reviewScoreRounded / 2 > 0) ? Colors.blue : Colors.grey, 
-      (reviewScoreRounded / 3 > 0) ? Colors.blue : Colors.grey, 
-      (reviewScoreRounded / 4 > 0) ? Colors.blue : Colors.grey, 
-      (reviewScoreRounded / 5 > 0) ? Colors.blue : Colors.grey, 
+      (reviewScoreRounded / 1 >= 1) ? Colors.blue : Colors.grey, 
+      (reviewScoreRounded / 2 >= 1) ? Colors.blue : Colors.grey, 
+      (reviewScoreRounded / 3 >= 1) ? Colors.blue : Colors.grey, 
+      (reviewScoreRounded / 4 >= 1) ? Colors.blue : Colors.grey, 
+      (reviewScoreRounded / 5 >= 1) ? Colors.blue : Colors.grey, 
     ];
   }
 
