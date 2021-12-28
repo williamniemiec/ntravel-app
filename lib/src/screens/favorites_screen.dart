@@ -1,7 +1,7 @@
-import 'package:ntravel/src/components/citybox.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ntravel/src/models/app_data.dart';
+import 'package:ntravel/src/components/citybox.dart';
 import 'package:ntravel/src/components/custom_app_bar.dart';
 import 'package:ntravel/src/components/custom_drawer.dart';
 

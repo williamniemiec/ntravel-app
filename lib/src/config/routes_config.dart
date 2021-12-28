@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ntravel/src/screens/city_screen.dart';
+import 'package:ntravel/src/screens/city/city_screen.dart';
 import 'package:ntravel/src/screens/continent_screen.dart';
 import 'package:ntravel/src/screens/favorites_screen.dart';
 import 'package:ntravel/src/screens/home/home_screen.dart';
