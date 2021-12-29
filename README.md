@@ -5,10 +5,10 @@
 <p align="center">
 	<a href="https://github.com/williamniemiec/ntravel-app/actions/workflows/macos.yml"><img src="https://github.com/williamniemiec/ntravel-app/actions/workflows/macos.yml/badge.svg" alt=""></a>
 	<a href="https://github.com/williamniemiec/ntravel-app/actions/workflows/ubuntu.yml"><img src="https://github.com/williamniemiec/ntravel-app/actions/workflows/ubuntu.yml/badge.svg" alt=""></a>
-	<a href="https://flutter.dev/"><img src="https://images.shields.io/badge/Flutter-2.5.3-D0008F.svg" alt="Flutter compatibility"></a>
-	<a href="https://dart.dev/"><img src="https://images.shields.io/badge/Dart-2.14.4-D0008F.svg" alt="Dart compatibility"></a>
-	<a href="https://github.com/williamniemiec/ntravel-app/releases"><img src="https://images.shields.io/github/v/release/williamniemiec/ntravel-app" alt="Release"></a>
-	<a href="https://github.com/williamniemiec/ntravel-app/blob/master/LICENSE"><img src="https://images.shields.io/github/license/williamniemiec/ntravel-app" alt="License"></a>
+	<a href="https://flutter.dev/"><img src="https://img.shields.io/badge/Flutter-2.5.3-D0008F.svg" alt="Flutter compatibility"></a>
+	<a href="https://dart.dev/"><img src="https://img.shields.io/badge/Dart-2.14.4-D0008F.svg" alt="Dart compatibility"></a>
+	<a href="https://github.com/williamniemiec/ntravel-app/releases"><img src="https://img.shields.io/github/v/release/williamniemiec/ntravel-app" alt="Release"></a>
+	<a href="https://github.com/williamniemiec/ntravel-app/blob/master/LICENSE"><img src="https://img.shields.io/github/license/williamniemiec/ntravel-app" alt="License"></a>
 </p>
 <p align="center">
 	<a href='https://play.google.com/store/apps/details?id=wniemiec.app-ntravel&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width=200/></a>
