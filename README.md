@@ -6,7 +6,8 @@
 	<a href="https://github.com/williamniemiec/ntravel-app/actions/workflows/windows.yml"><img src="https://github.com/williamniemiec/ntravel-app/actions/workflows/windows.yml/badge.svg" alt=""></a>
 	<a href="https://github.com/williamniemiec/ntravel-app/actions/workflows/macos.yml"><img src="https://github.com/williamniemiec/ntravel-app/actions/workflows/macos.yml/badge.svg" alt=""></a>
 	<a href="https://github.com/williamniemiec/ntravel-app/actions/workflows/ubuntu.yml"><img src="https://github.com/williamniemiec/ntravel-app/actions/workflows/ubuntu.yml/badge.svg" alt=""></a>
-	<a href="https://reactnative.dev/"><img src="https://images.shields.io/badge/React Native-0.60+-D0008F.svg" alt="React Native compatibility"></a>
+	<a href="https://flutter.dev/"><img src="https://images.shields.io/badge/Flutter-2.5.3-D0008F.svg" alt="Flutter compatibility"></a>
+	<a href="https://dart.dev/"><img src="https://images.shields.io/badge/Dart-2.14.4-D0008F.svg" alt="Dart compatibility"></a>
 	<a href="https://github.com/williamniemiec/ntravel-app/releases"><img src="https://images.shields.io/github/v/release/williamniemiec/ntravel-app" alt="Release"></a>
 	<a href="https://github.com/williamniemiec/ntravel-app/blob/master/LICENSE"><img src="https://images.shields.io/github/license/williamniemiec/ntravel-app" alt="License"></a>
 </p>
