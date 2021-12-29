@@ -26,6 +26,7 @@ nTravel is a mobile travel guide application built with Flutter Framework. This 
 - [Android Virtual Device](https://developer.android.com/studio/install);
 - [JDK 8+](https://www.oracle.com/java/technologies/downloads/);
 - [Flutter framework](https://flutter.dev);
+- [Dart](https://dart.dev);
 
 ## ℹ How to run
 
