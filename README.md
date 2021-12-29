@@ -3,7 +3,6 @@
 <h1 align='center'>nTravel</h1>
 <p align='center'>Travel guide built with Flutter Framework.</p>
 <p align="center">
-	<a href="https://github.com/williamniemiec/ntravel-app/actions/workflows/windows.yml"><img src="https://github.com/williamniemiec/ntravel-app/actions/workflows/windows.yml/badge.svg" alt=""></a>
 	<a href="https://github.com/williamniemiec/ntravel-app/actions/workflows/macos.yml"><img src="https://github.com/williamniemiec/ntravel-app/actions/workflows/macos.yml/badge.svg" alt=""></a>
 	<a href="https://github.com/williamniemiec/ntravel-app/actions/workflows/ubuntu.yml"><img src="https://github.com/williamniemiec/ntravel-app/actions/workflows/ubuntu.yml/badge.svg" alt=""></a>
 	<a href="https://flutter.dev/"><img src="https://images.shields.io/badge/Flutter-2.5.3-D0008F.svg" alt="Flutter compatibility"></a>
