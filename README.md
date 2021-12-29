@@ -31,7 +31,9 @@ nTravel is a mobile travel guide application built with Flutter Framework. This 
 
 Type in your terminal (after connecting a device):
 
-1. flutter run
+1. flutter pub get
+
+2. flutter run
 
 
 ## 🖼 Gallery
