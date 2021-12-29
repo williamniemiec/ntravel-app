@@ -47,16 +47,16 @@ Type in your terminal (after connecting a device):
 
 <img height=400 src="https://raw.githubusercontent.com/williamniemiec/ntravel-app/master/docs/images/screens/screen3.png" alt="image 3" />
 
-<img height=400 src="https://raw.githubusercontent.com/williamniemiec/ntravel-app/master/docs/images/screens/images4.png" alt="image 4" />
+<img height=400 src="https://raw.githubusercontent.com/williamniemiec/ntravel-app/master/docs/images/screens/screen4.png" alt="image 4" />
 
-<img height=400 src="https://raw.githubusercontent.com/williamniemiec/ntravel-app/master/docs/images/screens/images5.png" alt="image 5" />
+<img height=400 src="https://raw.githubusercontent.com/williamniemiec/ntravel-app/master/docs/images/screens/screen5.png" alt="image 5" />
 </div>
 
 ## 🚩 Changelog
 Details about each version are documented in the [releases section](https://github.com/williamniemiec/ntravel-app/releases).
 
 ## 🗺 Project structure
-![architecture](https://raw.githubusercontent.com/williamniemiec/ntravel-app/master/docs/images/design/architecture.jpg
+![architecture](https://raw.githubusercontent.com/williamniemiec/ntravel-app/master/docs/images/design/architecture.jpg)
 
 ## 📁 Files
 
