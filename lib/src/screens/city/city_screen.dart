@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ntravel/src/services/storage_service.dart';
 import 'package:provider/provider.dart';
 import 'package:ntravel/src/domain/city.dart';
 import 'package:ntravel/src/screens/city/city_background.dart';
@@ -10,7 +11,7 @@ import 'package:ntravel/src/components/template/custom_drawer.dart';
 
 /// Responsible for displaying City screen.
 class CityScreen extends StatefulWidget {
-  
+
   //---------------------------------------------------------------------------
   //		Constructor
   //---------------------------------------------------------------------------
@@ -31,7 +32,8 @@ class _CityScreen extends State<CityScreen> {
   //		Attributes
   //---------------------------------------------------------------------------
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
-  bool isFavorited = false;
+  bool _isFavorited = false;
+  StorageService? _storageService;
 
 
   //---------------------------------------------------------------------------
@@ -41,11 +43,13 @@ class _CityScreen extends State<CityScreen> {
   Widget build(BuildContext context) {
     return Consumer<AppData>(
       builder: (ctx, appdata, child) {
+        _storageService = StorageService(appdata);
+
         return Scaffold(
           key: _scaffoldKey,
           backgroundColor: Colors.white,
           drawer: _buildDrawer(context),
-          body: _buildBody(context, appdata)
+          body: _buildBody(context)
         );
       }
     );
@@ -57,7 +61,7 @@ class _CityScreen extends State<CityScreen> {
     );
   }
 
-  Stack _buildBody(BuildContext screenContext, AppData appdata) {
+  Stack _buildBody(BuildContext screenContext) {
     City city = _parseScreenArguments(screenContext);
 
     return Stack(
@@ -66,8 +70,8 @@ class _CityScreen extends State<CityScreen> {
         CityInformation(
           screenContext: screenContext,
           city: city,
-          isFavorited: isFavorited || appdata.isFavorited(city.name),
-          onFavoriteCity: (cityName) => _handleFavoriteCity(appdata, cityName)
+          isFavorited: _isFavorited || _storageService!.isCityFavorited(city),
+          onFavoriteCity: (cityName) => _handleFavoriteCity(cityName)
         ),
         CityBackButton(screenContext: screenContext)
       ]
@@ -81,9 +85,9 @@ class _CityScreen extends State<CityScreen> {
       .arguments as City;
   }
 
-  void _handleFavoriteCity(appdata, cityName) {
+  void _handleFavoriteCity(String cityName) {
     setState(() {
-      isFavorited = appdata.favorite(cityName);
+      _isFavorited = _storageService!.favoriteCityWithName(cityName);
     });
   }
 }

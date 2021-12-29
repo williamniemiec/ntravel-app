@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ntravel/src/components/template/background.dart';
+import 'package:ntravel/src/services/storage_service.dart';
 import 'package:provider/provider.dart';
 import 'package:ntravel/src/domain/continent.dart';
 import 'package:ntravel/src/services/continent_service.dart';
@@ -33,6 +34,8 @@ class _PreloadScreen extends State<PreloadScreen> {
   //		Attributes
   //---------------------------------------------------------------------------
   bool loading = true;
+  ContinentService? _continentService;
+  StorageService? _storageService;
 
 
   //---------------------------------------------------------------------------
@@ -67,17 +70,23 @@ class _PreloadScreen extends State<PreloadScreen> {
 
   Future<bool> _requestData() async {
     bool success = false;
-    AppData appdata = Provider.of<AppData>(context, listen: false);
-
-    ContinentService continentService = ContinentService();
-    List<Continent> continents = await continentService.getContinents();
+    _initializeServices();
+    
+    List<Continent> continents = await _continentService!.getContinents();
 
     if (continents.isNotEmpty) {
-      appdata.continents = continents;
+      _storageService!.setContinents(continents);
       success = true;
     }
     
     return success;
+  }
+
+  void _initializeServices() {
+    AppData appdata = Provider.of<AppData>(context, listen: false);
+    
+    _storageService = StorageService(appdata);
+    _continentService = ContinentService();
   }
 
   void _successfulRequest() {

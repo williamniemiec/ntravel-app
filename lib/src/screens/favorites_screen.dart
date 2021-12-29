@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ntravel/src/services/storage_service.dart';
 import 'package:provider/provider.dart';
 import 'package:ntravel/src/domain/city.dart';
 import 'package:ntravel/src/config/locales_config.dart';
@@ -15,6 +16,7 @@ class FavoritesScreen extends StatelessWidget {
   //		Attributes
   //---------------------------------------------------------------------------
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+  StorageService? _storageService;
 
 
   //---------------------------------------------------------------------------
@@ -30,14 +32,14 @@ class FavoritesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<AppData>(
       builder: (ctx, appdata, child) {
-        List<City> favorites = appdata.getFavorites();
+        _storageService = StorageService(appdata);
 
         return Scaffold(
           key: _scaffoldKey,
           appBar: _buildAppBar(context),
           backgroundColor: Colors.white,
           drawer: _buildDrawer(context),
-          body: _buildBody(context, favorites)
+          body: _buildBody(context)
         );
       }
     );
@@ -59,7 +61,9 @@ class FavoritesScreen extends StatelessWidget {
     );
   }
 
-  GridView _buildBody(BuildContext screenContext, List<City> favorites) {
+  GridView _buildBody(BuildContext screenContext) {
+    List<City> favorites = _storageService!.getFavorites();
+
     return GridView.count(
       crossAxisCount: 2,
       children: List.generate(

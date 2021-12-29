@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ntravel/src/domain/continent.dart';
+import 'package:ntravel/src/services/storage_service.dart';
 import 'package:provider/provider.dart';
 import 'package:ntravel/src/domain/city.dart';
-import 'package:ntravel/src/domain/country.dart';
 import 'package:ntravel/src/config/locales_config.dart';
 import 'package:ntravel/src/models/app_data.dart';
 import 'package:ntravel/src/components/template/custom_app_bar.dart';
@@ -16,6 +17,7 @@ class ContinentScreen extends StatelessWidget {
   //		Attributes
   //---------------------------------------------------------------------------
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+  StorageService? _storageService;
 
 
   //---------------------------------------------------------------------------
@@ -30,13 +32,17 @@ class ContinentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<AppData>(
-      builder: (ctx, appdata, child) => Scaffold(
-        key: _scaffoldKey,
-        appBar: _buildAppBar(context),
-        backgroundColor: Colors.white,
-        drawer: _buildDrawer(context),
-        body: _buildBody(appdata, context)
-      )
+      builder: (ctx, appdata, child) {
+        _storageService = StorageService(appdata);
+
+        return Scaffold(
+          key: _scaffoldKey,
+          appBar: _buildAppBar(context),
+          backgroundColor: Colors.white,
+          drawer: _buildDrawer(context),
+          body: _buildBody(context)
+        );
+      }
     );
   }
 
@@ -56,42 +62,22 @@ class ContinentScreen extends StatelessWidget {
     );
   }
 
-  ListView _buildBody(AppData appdata, BuildContext screenContext) {
+  ListView _buildBody(BuildContext screenContext) {
     return ListView.builder(
-      itemCount: appdata.continents.length,
+      itemCount: _storageService!.getTotalContinents(),
       itemBuilder: (ctx, continentIndex) {
-        String continentName = _parseContinentName(appdata, continentIndex);
-        List<City> cities = _parseContinentCities(appdata, continentIndex);
+        Continent continent = _storageService!.getContinentByIndex(continentIndex);
+        List<City> cities = _storageService!.getCitiesFromContinent(continent);
         
         return Column(
           children: [
-            _buildContinentHeader(screenContext, continentName, cities.length, 
+            _buildContinentHeader(screenContext, continent.name, cities.length, 
                                   continentIndex),
             _buildContinentCities(screenContext, cities)
           ]
         );
       }
     );
-  }
-
-  String _parseContinentName(AppData appdata, int continentIndex) {
-    return appdata.continents[continentIndex].name;
-  }
-
-  List<City> _parseContinentCities(AppData appdata, int continentIndex) {
-    List<Country> countries = appdata.continents[continentIndex].countries;
-    
-    return _parseCountryCities(countries);
-  }
-
-  List<City> _parseCountryCities(List<Country> countries) {
-    List<City> cities = [];
-    
-    for (Country country in countries) {
-      cities.addAll(country.cities);
-    }
-
-    return cities;
   }
 
   Row _buildContinentHeader(BuildContext screenContext, String continentName, 

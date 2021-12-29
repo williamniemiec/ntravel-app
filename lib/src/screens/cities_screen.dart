@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ntravel/src/services/storage_service.dart';
 import 'package:provider/provider.dart';
 import 'package:ntravel/src/domain/city.dart';
 import 'package:ntravel/src/domain/continent.dart';
-import 'package:ntravel/src/domain/country.dart';
 import 'package:ntravel/src/config/locales_config.dart';
 import 'package:ntravel/src/models/app_data.dart';
 import 'package:ntravel/src/components/citybox.dart';
@@ -17,6 +17,7 @@ class CitiesScreen extends StatelessWidget {
   //		Attributes
   //---------------------------------------------------------------------------
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+  StorageService? _storageService;
 
 
   //---------------------------------------------------------------------------
@@ -34,8 +35,9 @@ class CitiesScreen extends StatelessWidget {
 
     return Consumer<AppData>(
       builder: (ctx, appdata, child) {
-        Continent continent = appdata.continents[continentIndex];
-        List<City> cities = _parseCitiesFromCountry(continent.countries);
+        _storageService = StorageService(appdata);
+        Continent continent = _storageService!.getContinentByIndex(continentIndex);
+        List<City> cities = _storageService!.getCitiesFromContinent(continent);
         
         return Scaffold(
           key: _scaffoldKey,
@@ -46,16 +48,6 @@ class CitiesScreen extends StatelessWidget {
         );
       }
     );
-  }
-
-  List<City> _parseCitiesFromCountry(List<Country> countries) {
-    List<City> cities = [];
-    
-    for (Country country in countries) {
-      cities.addAll(country.cities);
-    }
-    
-    return cities;
   }
 
   PreferredSizeWidget? _buildAppBar(BuildContext screenContext, 
