@@ -56,7 +56,7 @@ Type in your terminal (after connecting a device):
 Details about each version are documented in the [releases section](https://github.com/williamniemiec/ntravel-app/releases).
 
 ## 🗺 Project structure
-![architecture](https://raw.githubusercontent.com/williamniemiec/ntravel-app/master/docs/images/design/architecture.jpg)
+![architecture](https://raw.githubusercontent.com/williamniemiec/ntravel-app/master/docs/images/design/schema.jpg)
 
 ## 📁 Files
 
