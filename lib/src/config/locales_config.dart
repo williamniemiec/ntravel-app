@@ -85,7 +85,7 @@ class LocalesConfig {
 
   Future<Map<String, dynamic>> _loadDictionary() async {
     String storedDictionary = await rootBundle.loadString(
-      'lib/assets/locales/${currentLocale.languageCode}.json'
+      'lib/resources/locales/${currentLocale.languageCode}.json'
     );
     
     return json.decode(storedDictionary);

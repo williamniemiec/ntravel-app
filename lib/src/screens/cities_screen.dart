@@ -17,7 +17,7 @@ class CitiesScreen extends StatelessWidget {
   //		Attributes
   //---------------------------------------------------------------------------
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
-  StorageService? _storageService;
+  late final StorageService? _storageService;
 
 
   //---------------------------------------------------------------------------

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:ntravel/src/domain/city.dart';
 import 'package:ntravel/src/domain/continent.dart';
 import 'package:ntravel/src/domain/country.dart';
