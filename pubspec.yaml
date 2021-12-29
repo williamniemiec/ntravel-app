@@ -1,7 +1,7 @@
 name: ntravel
 description: Travel guide built with Flutter Framework.
 publish_to: 'none' 
-version: 1.0.0
+version: 1.0.1
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
