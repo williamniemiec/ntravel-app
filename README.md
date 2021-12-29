@@ -11,7 +11,7 @@
 	<a href="https://github.com/williamniemiec/ntravel-app/blob/master/LICENSE"><img src="https://img.shields.io/github/license/williamniemiec/ntravel-app" alt="License"></a>
 </p>
 <p align="center">
-	<a href='https://play.google.com/store/apps/details?id=wniemiec.app-ntravel&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width=200/></a>
+	<a href='https://play.google.com/store/apps/details?id=wniemiec.app.ntravel'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width=200/></a>
 </p>
 
 <hr />
