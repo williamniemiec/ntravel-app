@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ntravel/src/components/template/background.dart';
 import 'package:provider/provider.dart';
 import 'package:ntravel/src/domain/continent.dart';
 import 'package:ntravel/src/services/continent_service.dart';
@@ -94,7 +95,9 @@ class _PreloadScreen extends State<PreloadScreen> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
 
     return Scaffold(
-      body: _buildBody()
+      body: Background(
+        body: _buildBody()
+      )
     );
   }
 

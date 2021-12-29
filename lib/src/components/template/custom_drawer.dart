@@ -42,7 +42,7 @@ class CustomDrawer extends StatelessWidget {
 
   DrawerHeader _buildHeader(LocalesConfig locale) {
     BoxDecoration headerStyle = const BoxDecoration(
-      color: Colors.blue
+      color: Color(0xFFFF9000)
     );
 
     return DrawerHeader(
@@ -57,9 +57,9 @@ class CustomDrawer extends StatelessWidget {
     );
   }
 
-  Text _buildHeaderTitle() {
+  Widget _buildHeaderTitle() {
     TextStyle headerTitleStyle = const TextStyle(
-      color: Colors.white,
+      color: Colors.black,
       fontFamily: 'Helvetica Neue',
       fontSize: 22,
       fontWeight: FontWeight.bold,
@@ -73,7 +73,7 @@ class CustomDrawer extends StatelessWidget {
 
   Text _buildHeaderSubtitle(LocalesConfig locale) {
     TextStyle headerSubtitleStyle = const TextStyle(
-      color: Colors.white,
+      color: Colors.black,
       fontFamily: 'Helvetica Neue',
       fontSize: 12
     );

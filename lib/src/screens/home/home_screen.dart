@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ntravel/src/components/template/background.dart';
 import 'package:provider/provider.dart';
 import 'package:ntravel/src/config/locales_config.dart';
 import 'package:ntravel/src/screens/home/home_text.dart';
@@ -36,7 +37,9 @@ class HomeScreen extends StatelessWidget {
         appBar: _buildAppBar(context, locale),
         backgroundColor: Colors.white,
         drawer: _buildDrawer(context),
-        body: _buildBody(locale)
+        body: Background(
+          body: _buildBody(locale)
+        )
       )
     );
   }
@@ -63,7 +66,7 @@ class HomeScreen extends StatelessWidget {
         children: [
           HomeText(title: locale.translate("WELCOME_TO")),
           const Logo(),
-          HomeText(title: locale.translate("PERFECT_TRAVEL_GUIDE"))
+          HomeText(title: locale.translate("APP_DESCRIPTION"))
         ]
       )
     );

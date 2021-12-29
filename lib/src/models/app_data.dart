@@ -11,7 +11,7 @@ class AppData with ChangeNotifier {
   //		Attributes
   //---------------------------------------------------------------------------
   List<Continent> _continents = [];
-  List<String> _favorites = [];
+  final List<String> _favorites = [];
 
 
   //---------------------------------------------------------------------------

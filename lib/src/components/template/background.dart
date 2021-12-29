@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 
 
-/// Responsible for displaying texts on Home screen.
-class HomeText extends StatelessWidget {
+/// Responsible for application background.
+class Background extends StatelessWidget {
 
   //---------------------------------------------------------------------------
   //		Attributes
   //---------------------------------------------------------------------------
-  final String title;
-  
+  final Widget? body;
+
 
   //---------------------------------------------------------------------------
-  //		 Constructor
+  //		Constructor
   //---------------------------------------------------------------------------
-  const HomeText({
-    Key? key,
-    required this.title
+  const Background({Key? key, 
+    this.body
   }) : super(key: key);
 
 
@@ -25,29 +24,13 @@ class HomeText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: _buildText(),
-      margin: _buildMargin()
-    );
-  }
-
-  Text _buildText() {
-    const textStyle = TextStyle(
-      fontSize: 15,
-      color: Colors.white,
-      fontWeight: FontWeight.bold,
-      fontFamily: 'Helvetica Neue'
-    );
-
-    return Text(
-      title,
-      style: textStyle,
-    );
-  }
-
-  EdgeInsets _buildMargin() {
-    return const EdgeInsets.only(
-      bottom: 15, 
-      top: 15
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("lib/assets/background.jpg"),
+          fit: BoxFit.cover
+        )
+      ),
+      child: body
     );
   }
 }

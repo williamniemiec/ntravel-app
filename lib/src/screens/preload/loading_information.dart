@@ -32,7 +32,8 @@ class LoadingInformation extends StatelessWidget {
         locale.translate("LOADING_INFORMATION"),
         style: const TextStyle(
           fontSize: 16,
-        ),
+          color: Colors.white
+        )
       ),
       margin: const EdgeInsets.all(30),
     );
@@ -41,7 +42,7 @@ class LoadingInformation extends StatelessWidget {
   CircularProgressIndicator _buildLoadingIcon() {
     return const CircularProgressIndicator(
       strokeWidth: 3,
-      valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+      valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFFF9000)),
     );
   }
 }
