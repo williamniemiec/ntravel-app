@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ntravel/src/utils/device_utils.dart';
+import 'package:ntravel/src/services/device_service.dart';
 
 
 /// Responsible for displaying a back button on City screen.
@@ -9,6 +9,7 @@ class CityBackButton extends StatelessWidget {
   //		Attributes
   //---------------------------------------------------------------------------
   final BuildContext screenContext;
+  late final DeviceService _deviceService;
 
 
   //---------------------------------------------------------------------------
@@ -16,10 +17,12 @@ class CityBackButton extends StatelessWidget {
   //---------------------------------------------------------------------------
   /// Displays a back button on City screen, redirecting the application to
   /// previous screen based on [screenContext].
-  const CityBackButton({
+  CityBackButton({
     Key? key,
     required this.screenContext
-  }) : super(key: key);
+  }) : super(key: key) {
+    _deviceService = DeviceService();
+  }
 
 
   //---------------------------------------------------------------------------
@@ -27,9 +30,10 @@ class CityBackButton extends StatelessWidget {
   //---------------------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
+    
     return Container(
       height: 50,
-      margin: EdgeInsets.only(top: DeviceUtils.getStatusBarHeight(screenContext)),
+      margin: EdgeInsets.only(top: _deviceService.getStatusBarHeight(screenContext)),
       child: _buildBackButton()
     );
   }

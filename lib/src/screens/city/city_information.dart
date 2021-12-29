@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ntravel/src/config/locales_config.dart';
 import 'package:ntravel/src/domain/city.dart';
-import 'package:ntravel/src/utils/device_utils.dart';
+import 'package:ntravel/src/services/device_service.dart';
 
 
 /// Responsible for displaying city information on City screen.
@@ -14,18 +14,21 @@ class CityInformation extends StatelessWidget {
   final City city;
   final bool isFavorited;
   final void Function(String) onFavoriteCity;
+  late final DeviceService _deviceService;
 
 
   //---------------------------------------------------------------------------
   //		Constructor
   //---------------------------------------------------------------------------
-  const CityInformation({
+  CityInformation({
     Key? key,
     required this.screenContext,
     required this.city,
     required this.isFavorited,
     required this.onFavoriteCity
-  }) : super(key: key);
+  }) : super(key: key) {
+    _deviceService = DeviceService();
+  }
 
 
   //---------------------------------------------------------------------------
@@ -202,7 +205,7 @@ class CityInformation extends StatelessWidget {
       shrinkWrap: true,
       padding: EdgeInsets.only(
         top: 0, 
-        bottom: DeviceUtils.getFooterHeight(screenContext)
+        bottom: _deviceService.getFooterHeight(screenContext)
       ),
       physics: const NeverScrollableScrollPhysics(),
       crossAxisCount: 2,

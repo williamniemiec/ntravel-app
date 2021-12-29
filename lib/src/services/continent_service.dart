@@ -1,19 +1,20 @@
 import 'dart:convert';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:ntravel/src/domain/city.dart';
 import 'package:ntravel/src/domain/continent.dart';
 import 'package:ntravel/src/domain/country.dart';
 import 'package:ntravel/src/domain/place.dart';
-import 'package:ntravel/src/services/service.dart';
 
 
 /// Responsible for providing continent data.
-class ContinentService extends Service {
+class ContinentService {
 
   //---------------------------------------------------------------------------
   //		Attributes
   //---------------------------------------------------------------------------
   static final ContinentService _instance = ContinentService._internal();
+  DatabaseReference? _dbRef;
 
 
   //---------------------------------------------------------------------------
@@ -34,16 +35,28 @@ class ContinentService extends Service {
   //		Methods
   //---------------------------------------------------------------------------
   Future<List<Continent>> getContinents() async {
-    bool success = await startService();
+    bool success = await _startService();
 
     if (!success) {
       return [];
     }
     
-    DataSnapshot snapshot = await dbRef!.get();
+    DataSnapshot snapshot = await _dbRef!.get();
     String responseBody = jsonEncode(snapshot.value);
     
     return parseContinents(responseBody);
+  }
+
+  Future<bool> _startService() async {
+    _dbRef = await _initializeDatabase();
+
+    return (_dbRef != null);
+  }
+
+  Future<DatabaseReference?> _initializeDatabase() async {
+    await Firebase.initializeApp();
+
+    return FirebaseDatabase.instance.ref();
   }
 
   List<Continent> parseContinents(String json) {
